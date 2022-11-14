@@ -4,6 +4,7 @@ html {
 }
 body {
 
+  background-color:#F5F7FB ;
   margin: 0;
   
   -webkit-font-smoothing: antialiased;
@@ -15,9 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.start-div{
-  position: relative;
+.quiz-div{
   background-color:#F5F7FB ;
   width: 100vw;
   height: 100vh;
@@ -25,6 +24,12 @@ code {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.start-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .start-title {
   z-index: 3;
@@ -58,7 +63,7 @@ code {
   background-image: url('../public/images/shape_bottom.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: 0;
+  z-index: 1;
   left: 0px;
   top: calc(100vh - 24rem);
 }
@@ -70,8 +75,50 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 0;
-  right: -7rem;
+  right: 0;
   top: 0;
 
 
+}
+.question-div{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  width: 40rem;
+
+
+}
+
+.question-div::after {
+  content: '';
+  border-bottom: 1px solid #293264;
+  max-width: 40rem ;
+  z-index: 2;
+
+}
+.answers-div{
+  display: flex;
+  max-width: 40rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+}
+
+.question-option {
+  z-index: 2;
+  border-color: 0.5px solid #4D5B9E;
+  border-radius: 8px;
+  margin-top: 1.2rem;
+  
+}
+.question-title {
+  z-index: 2;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #293264;
+  
+  max-width: 40rem;
+}
+.question-option:not(:last-child) {
+  margin-right: 1.2rem;
 }

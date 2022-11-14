@@ -2,7 +2,7 @@
 import NewGame from './components/New_game';
 import React from 'react';
 import Quiz from './components/Quiz';
-
+import {nanoid} from 'nanoid' 
 
 function App() {
   const [quiz, setQuiz] =React.useState([])
@@ -16,12 +16,14 @@ function App() {
   },[]) 
 
 
-  
+
 
 
   const [quize, showQuize] = React.useState(false)
   const quizMarkup = quiz.map(x=>{
-        return <Quiz question={x.question} 
+        return <Quiz 
+        key={nanoid()}
+        question={x.question} 
         correct={x.correct_answer}
         option1={x.incorrect_answers[0]}
         option2={x.incorrect_answers[1]}
@@ -30,10 +32,17 @@ function App() {
   })
   function toogle(){
     showQuize(olde=>olde=!olde)
+
   }
   console.log(quiz)
   return (
-    <div>
+    <div className="quiz-div">
+      <div className="figure-top">
+
+            </div>
+            <div className="figure-bottom">
+
+            </div>
    
     {quize?quizMarkup: <NewGame  isHide={quize} toogle={()=>toogle()}/>} 
     </div>
