@@ -1,9 +1,9 @@
 import React from "react";
-import style from '../index.css'
+
 export default function NewGame() {
     return (
         <div className="start-div">
-            <div className="figure_top">
+            <div className="figure-top">
 
             </div>
             <div className="figure-bottom">
