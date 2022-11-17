@@ -25,16 +25,21 @@ function App() {
         key={nanoid()}
         question={x.question} 
         correct={x.correct_answer}
-        option1={x.incorrect_answers[0]}
-        option2={x.incorrect_answers[1]}
-        option3={x.incorrect_answers[2]}
+        arrayOfAnswers={x.incorrect_answers}
+        isHeld={false}
         />
   })
   function toogle(){
     showQuize(olde=>olde=!olde)
 
   }
+
+
+
+
   console.log(quiz)
+
+
   return (
     <div className="quiz-div">
       <div className="figure-top">
