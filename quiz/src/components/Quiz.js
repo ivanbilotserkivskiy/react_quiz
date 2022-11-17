@@ -1,26 +1,41 @@
 import React from "react";
 export default function Quiz ({question,correct,arrayOfAnswers,isHeld}) {
-    if(arrayOfAnswers.indexOf(correct)===-1){
-        arrayOfAnswers.push(correct)
-    }
-   console.log(arrayOfAnswers)
-   let array = arrayOfAnswers.map(x=>({x, sort:Math.random()
-   })).sort((a,b)=>a.sort-b.sort).map(({x})=>x)
+    arrayOfAnswers.indexOf(correct)===-1 && arrayOfAnswers.push(correct)
 
-   console.log(array)
+    const [a,ca] = React.useState(isHeld)
+    // console.log(a)
+ let array=arrayOfAnswers
+//    console.log(arrayOfAnswers)
+    React.useEffect(()=>{
+         array = arrayOfAnswers.map(x=>({x, sort:Math.random()
+        })).sort((a,b)=>a.sort-b.sort).map(({x})=>x)
+    },[])
 
- const styles = {
-        backgroundColor: isHeld?"#4D5B9E":"#F5F7FB"
+
+//    console.log(array)
+
+ const styles1 = {
+        backgroundColor:"#4D5B9E"
  }
-
+ const styles2 = {
+     backgroundColor:"#F5F7FB"
+ }
+ function hui (id){
+    ca(p=>p.map((d,index)=>{
+      
+        return index===id?!d:false
+  
+}))
+ }
     return (
         <div className="question-div">
             <h2 className="question-title">{question}</h2>
             <div className="answers-div">
-            <button style={styles} value={array[0]} className="question-option">{array[0]}</button>
-            <button style={styles} value={array[1]} className="question-option">{array[1]}</button>
-            <button style={styles} value={array[2]} className="question-option">{array[2]}</button>
-            <button style={styles} value={array[3]} className="question-option">{array[3]}</button>
+                {array.map((x,index)=>{
+                // console.log(<button style={isHeld[index]?styles1:styles2} id={index} isHeld={isHeld[index]} onClick={held} className="question-option">{x}</button>)
+                    return (<button style={a[index]?styles1:styles2} id={index} isHeld={isHeld[index] }onClick={()=>hui(index)} className="question-option">{x}</button>)
+                    
+                })}
             </div>
         </div>
     )
