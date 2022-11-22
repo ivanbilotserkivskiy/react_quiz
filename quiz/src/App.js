@@ -15,7 +15,8 @@ function App() {
     ...x,
     isHeld:[false,false,false,false],
     id:[nanoid(),nanoid(),nanoid(),nanoid()],
-    check:false
+    check:false,
+
   }
  })).then(data=>setQuiz(data))
 
@@ -24,16 +25,19 @@ function App() {
  
   },[]) 
 
-  function hui2 (id){
+  function toggleAnswers (id){
     setQuiz(p=>p.map((d)=>{
-      let a = d.isHeld.map((o,index)=>{
-       
-        return id===d.id[index]?!o:false
-      })
+      let a = d.id.indexOf(id)
+      let b = d.isHeld
+      if(a>-1){
+        b= d.isHeld.map((o,index)=>{
+          return index===a?!o:false
+        })
+      }
       console.log(id)
       return {
         ...d,
-        isHeld:a
+        isHeld:b
       }
   
 }))
@@ -43,14 +47,15 @@ function App() {
     
         return <Quiz 
         key={nanoid()}
-        question={x.question} 
+        question={x.question}
+        
         correct={x.correct_answer}
         arrayOfAnswers={x.incorrect_answers}
         isHeld={x.isHeld}
         id={x.id}
         keyAnswers={[nanoid(),nanoid(),nanoid(),nanoid()]}
         check={x.check}
-        hui2={hui2}
+        toggleAnswers={toggleAnswers}
         
         />
   })

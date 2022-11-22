@@ -1,5 +1,5 @@
 import React from "react";
-export default function Quiz ({question,correct,arrayOfAnswers,isHeld,hui2,id,keyAnswers,check}) {
+export default function Quiz ({question,correct,arrayOfAnswers,isHeld,toggleAnswers,id,keyAnswers,check}) {
     arrayOfAnswers.indexOf(correct)===-1 && arrayOfAnswers.push(correct)
 
   
@@ -22,7 +22,7 @@ export default function Quiz ({question,correct,arrayOfAnswers,isHeld,hui2,id,ke
             <div className="answers-div">
                
                 {array.map((x,index)=>{
-                // console.log(<button style={isHeld[index]?styles1:styles2} id={index} onClick={hui2} className="question-option">{x}</button>)
+                
                        
                     let style1 ={
                             backgroundColor: isHeld[index]?"#D6DBF5":"#F5F7FB"
@@ -31,10 +31,18 @@ export default function Quiz ({question,correct,arrayOfAnswers,isHeld,hui2,id,ke
                         let style2 = {
                             backgroundColor: correct===x?"#94D7A2":"transparent"
                         }
+                        // console.log(<button 
+                        //     questionId={questionId}
+                        //     style={check?style2:style1} 
+                        //     key={keyAnswers[index]}  
+                        //     onClick={()=>toggleAnswers(id[index])} 
+                        //     className="question-option">{x}
+                        //     </button>)
                     return (<button 
+                
                         style={check?style2:style1} 
                         key={keyAnswers[index]}  
-                        onClick={()=>hui2(id[index])} 
+                        onClick={()=>toggleAnswers(id[index])} 
                         className="question-option">{x}
                         </button>)
                     
