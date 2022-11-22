@@ -45,7 +45,7 @@ code {
   font-size: 1.6rem;
   margin-top: .7rem;
 }
-.start-button {
+.start-button, .check-button {
   z-index: 1;
   background-color: #4D5B9E;
   color: #F5F7FB;
@@ -121,4 +121,9 @@ code {
 }
 .question-option:not(:last-child) {
   margin-right: 1.2rem;
+}
+.check-button {
+  font-size: 1rem;
+  width: 12rem;
+  height: 3.5rem;
 }

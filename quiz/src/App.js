@@ -14,7 +14,8 @@ function App() {
   return {
     ...x,
     isHeld:[false,false,false,false],
-    id:[nanoid(),nanoid(),nanoid(),nanoid()]
+    id:[nanoid(),nanoid(),nanoid(),nanoid()],
+    check:false
   }
  })).then(data=>setQuiz(data))
 
@@ -23,7 +24,20 @@ function App() {
  
   },[]) 
 
-
+  function hui2 (id){
+    setQuiz(p=>p.map((d)=>{
+      let a = d.isHeld.map((o,index)=>{
+       
+        return id===d.id[index]?!o:false
+      })
+      console.log(id)
+      return {
+        ...d,
+        isHeld:a
+      }
+  
+}))
+ }
   
   const quizMarkup = quiz.map(x=>{
     
@@ -34,6 +48,9 @@ function App() {
         arrayOfAnswers={x.incorrect_answers}
         isHeld={x.isHeld}
         id={x.id}
+        keyAnswers={[nanoid(),nanoid(),nanoid(),nanoid()]}
+        check={x.check}
+        hui2={hui2}
         
         />
   })
@@ -47,7 +64,14 @@ function App() {
  console.log(quiz)
 
   // console.log(quiz)
-
+function checkAnswers() {
+  setQuiz(old=>old.map(x=>{
+    return {
+      ...x,
+      check:true
+    }
+  }))
+}
 
   return (
     <div className="quiz-div">
@@ -59,6 +83,7 @@ function App() {
             </div>
    
     {quize?quizMarkup: <NewGame  isHide={quize} toogle={()=>toogle()}/>} 
+    {quize&&<button className="check-button" onClick={checkAnswers}>Check answers</button>}
     </div>
   );
 }
