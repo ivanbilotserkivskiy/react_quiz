@@ -1,18 +1,10 @@
 import React from "react";
 export default function Quiz ({question,correct,arrayOfAnswers,isHeld,toggleAnswers,id,keyAnswers,check}) {
-    arrayOfAnswers.indexOf(correct)===-1 && arrayOfAnswers.push(correct)
 
   
-    // console.log(a)
- let array=arrayOfAnswers
-//    console.log(arrayOfAnswers)
-    React.useEffect(()=>{
-         array = arrayOfAnswers.map(x=>({x, sort:Math.random()
-        })).sort((a,b)=>a.sort-b.sort).map(({x})=>x)
-    },[])
+    
+    arrayOfAnswers.indexOf(correct)===-1 && arrayOfAnswers.splice(Math.floor(Math.random() * 11),0,correct)
 
-
-//    console.log(array)
 
 
 
@@ -21,26 +13,41 @@ export default function Quiz ({question,correct,arrayOfAnswers,isHeld,toggleAnsw
             <h2 className="question-title">{question}</h2>
             <div className="answers-div">
                
-                {array.map((x,index)=>{
+                {arrayOfAnswers.map((x,index)=>{
                 
                        
-                    let style1 ={
+                    let styleHeld ={
                             backgroundColor: isHeld[index]?"#D6DBF5":"#F5F7FB"
                         }
 
-                        let style2 = {
-                            backgroundColor: correct===x?"#94D7A2":"transparent"
+                  
+                        let checkedStyles = {
+                            backgroundColor:"#F8BCBC",
+                            opacity:1
                         }
-                        // console.log(<button 
-                        //     questionId={questionId}
-                        //     style={check?style2:style1} 
-                        //     key={keyAnswers[index]}  
-                        //     onClick={()=>toggleAnswers(id[index])} 
-                        //     className="question-option">{x}
-                        //     </button>)
+                        function styles () {
+                            if(check&&x===correct) {
+                             checkedStyles.backgroundColor="#94D7A2"
+                             return checkedStyles
+                            }
+                            else if(check&&x!=correct) {
+                                checkedStyles.backgroundColor=isHeld[index]?"#F8BCBC":"transparent"
+                                checkedStyles.opacity=0.5
+                                return checkedStyles
+                            }
+                            else if (!check){
+                                
+                                return styleHeld
+                            }
+                            else if (check&&isHeld[index]===false) {
+                                checkedStyles.backgroundColor="transparent"
+                                return checkedStyles
+                            }
+                        }
+                   
                     return (<button 
                 
-                        style={check?style2:style1} 
+                        style={styles()} 
                         key={keyAnswers[index]}  
                         onClick={()=>toggleAnswers(id[index])} 
                         className="question-option">{x}
