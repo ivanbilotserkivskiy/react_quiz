@@ -1,7 +1,6 @@
 import React from "react";
 export default function Quiz ({question,correct,arrayOfAnswers,isHeld,toggleAnswers,id,keyAnswers,check}) {
 
-  
     
     arrayOfAnswers.indexOf(correct)===-1 && arrayOfAnswers.splice(Math.floor(Math.random() * 11),0,correct)
 
