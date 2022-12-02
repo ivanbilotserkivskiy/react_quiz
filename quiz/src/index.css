@@ -158,3 +158,24 @@ label {
   font-size: 1.4rem;
   z-index: 2222;
 }
+@media (max-width:450px) {
+  .question-option {
+    font-size: 1rem;
+  }
+  .question-option {
+    margin-left: 1rem;
+   
+  }
+ 
+  .question-title {
+    font-size: 1.4rem;
+    margin-left: .5rem;
+  }
+  .question-div {
+    width: 36rem;
+  }
+  .question-div::after { 
+    max-width: 34rem ;
+    margin-left: .5rem;
+  }
+}
